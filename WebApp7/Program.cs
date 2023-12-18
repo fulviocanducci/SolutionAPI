@@ -8,11 +8,15 @@ namespace WebApp7
       {
          var builder = WebApplication.CreateBuilder(args);
 
+         builder.Services.AddGlobalInjection();
+         builder.Services.AddDatabaseContext();
          builder.Services.AddControllers();
          builder.Services.AddCors();
          builder.Services.AddEndpointsApiExplorer();
          builder.Services.AddSwaggerGen();
+         builder.Services.AddSwaggerGenConfiguration();
          builder.Services.AddAuthenticationJwtBearer();
+         builder.Services.AddConfigureDefault();
 
          var app = builder.Build();
 

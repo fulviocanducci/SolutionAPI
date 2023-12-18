@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using WebApp7.Models;
+using WebApp7.Models.User;
 namespace WebApp7.Services
 {
    public class TokenService
@@ -13,7 +14,7 @@ namespace WebApp7.Services
          SecretSettings = secretSettings;
       }
 
-      public string Generate(User model)
+      public TokenDTO Generate(UserLogin model)
       {
          JwtSecurityTokenHandler handler = new();
          SecurityTokenDescriptor tokenDescriptor = new()
@@ -27,10 +28,10 @@ namespace WebApp7.Services
             Expires = DateTime.UtcNow.AddHours(8)
          };
          SecurityToken token = handler.CreateToken(tokenDescriptor);
-         return handler.WriteToken(token);
+         return new TokenDTO(handler.WriteToken(token), tokenDescriptor.Expires);
       }
 
-      private ClaimsIdentity GenerateClaims(User model)
+      private ClaimsIdentity GenerateClaims(UserLogin model)
       {
          var ci = new ClaimsIdentity();
          ci.AddClaim(new Claim(ClaimTypes.Name, model.Email));
