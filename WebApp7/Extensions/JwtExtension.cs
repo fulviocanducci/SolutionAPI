@@ -62,7 +62,7 @@ namespace WebApp7.Extensions
             options.TokenValidationParameters = new TokenValidationParameters()
             {
                ClockSkew = TokenValidationParameters.DefaultClockSkew,
-               ValidateAudience = false,
+               ValidateAudience = false,               
                ValidateIssuer = false,
                ValidateIssuerSigningKey = true,
                IssuerSigningKey = secretSettings.SymmetricSecurityKey

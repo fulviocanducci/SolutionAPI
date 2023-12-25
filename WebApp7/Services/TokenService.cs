@@ -36,7 +36,7 @@ namespace WebApp7.Services
          var ci = new ClaimsIdentity();
          ci.AddClaim(new Claim(ClaimTypes.Name, model.Email));
          ci.AddClaim(new Claim(ClaimTypes.Email, model.Email));
-         ci.AddClaim(new Claim(ClaimTypes.NameIdentifier, model.Email));
+         ci.AddClaim(new Claim(ClaimTypes.NameIdentifier, model.Email));         
          return ci;
       }
    }
