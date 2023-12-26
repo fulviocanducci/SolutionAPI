@@ -8,8 +8,8 @@ namespace WebApp7.Extensions
    {
       public static IServiceCollection AddConfigureDefault(this IServiceCollection services)
       {
-         services.Configure<RouteOptions>(options => 
-         { 
+         services.Configure<RouteOptions>(options =>
+         {
             options.LowercaseUrls = true;
             options.LowercaseQueryStrings = true;
          });

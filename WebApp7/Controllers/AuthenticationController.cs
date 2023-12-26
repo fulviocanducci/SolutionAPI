@@ -6,7 +6,7 @@ using WebApp7.Repositories;
 using WebApp7.Services;
 namespace WebApp7.Controllers
 {
-   [Route("api/[controller]")]
+   [Route("api/v1/[controller]")]
    [ApiController]
    [Produces(MediaTypeNames.Application.Json)]
    public class AuthenticationController : ControllerBase

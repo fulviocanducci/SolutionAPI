@@ -50,20 +50,27 @@ namespace WebApp7.Extensions
          return services;
       }
 
-      public static IServiceCollection AddAuthenticationJwtBearer(this IServiceCollection services)
+      public static IServiceCollection AddAuthenticationJwtBearer(this IServiceCollection services, ConfigurationManager configuration)
       {
-         SecretSettings secretSettings = new();
+         SecretSettings secretSettings = new(configuration);
          services.AddSingleton(_ => secretSettings);
          services.AddSingleton<TokenService>();
-         services.AddAuthentication().AddJwtBearer(options =>
+         services.AddAuthentication(options =>
+         {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+         }).AddJwtBearer(options =>
          {
             options.SaveToken = true;
             options.RequireHttpsMetadata = false;
             options.TokenValidationParameters = new TokenValidationParameters()
             {
-               ClockSkew = TokenValidationParameters.DefaultClockSkew,
-               ValidateAudience = false,               
-               ValidateIssuer = false,
+               ClockSkew = TokenValidationParameters.DefaultClockSkew,               
+               ValidateAudience = secretSettings.ValidateAudience,  
+               ValidAudience = secretSettings.Audience,
+               ValidateIssuer = secretSettings.ValidateIssuer,
+               ValidIssuer = secretSettings.Issuer,
                ValidateIssuerSigningKey = true,
                IssuerSigningKey = secretSettings.SymmetricSecurityKey
             };

@@ -25,7 +25,9 @@ namespace WebApp7.Services
                SecretSettings.SymmetricSecurityKey,
                SecurityAlgorithms.HmacSha256Signature
             ),
-            Expires = DateTime.UtcNow.AddHours(8)
+            Expires = DateTime.UtcNow.AddHours(8),
+            Audience = SecretSettings.Audience,
+            Issuer = SecretSettings.Issuer
          };
          SecurityToken token = handler.CreateToken(tokenDescriptor);
          return new TokenDTO(handler.WriteToken(token), tokenDescriptor.Expires);
@@ -34,9 +36,10 @@ namespace WebApp7.Services
       private ClaimsIdentity GenerateClaims(UserLogin model)
       {
          var ci = new ClaimsIdentity();
+         ci.AddClaim(new Claim("jti", Guid.NewGuid().ToString()));
          ci.AddClaim(new Claim(ClaimTypes.Name, model.Email));
          ci.AddClaim(new Claim(ClaimTypes.Email, model.Email));
-         ci.AddClaim(new Claim(ClaimTypes.NameIdentifier, model.Email));         
+         ci.AddClaim(new Claim(ClaimTypes.NameIdentifier, model.Email));
          return ci;
       }
    }

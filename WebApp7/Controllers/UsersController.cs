@@ -5,7 +5,7 @@ using WebApp7.Models.User;
 using WebApp7.Repositories;
 namespace WebApp7.Controllers
 {
-   [Route("api/[controller]")]
+   [Route("api/v1/[controller]")]
    [ApiController]
    [Authorize()]
    [Produces(MediaTypeNames.Application.Json)]

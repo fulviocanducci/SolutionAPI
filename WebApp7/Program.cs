@@ -15,7 +15,7 @@ namespace WebApp7
          builder.Services.AddEndpointsApiExplorer();
          builder.Services.AddSwaggerGen();
          builder.Services.AddSwaggerGenConfiguration();
-         builder.Services.AddAuthenticationJwtBearer();
+         builder.Services.AddAuthenticationJwtBearer(builder.Configuration);
          builder.Services.AddConfigureDefault();
 
          var app = builder.Build();
