@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
+using WebApp7.Models.Token;
 using WebApp7.Models.User;
 using WebApp7.Repositories;
 using WebApp7.Services;
 namespace WebApp7.Controllers
 {
-   [Route("api/v1/[controller]")]
+    [Route("api/v1/[controller]")]
    [ApiController]
    [Produces(MediaTypeNames.Application.Json)]
    public class AuthenticationController : ControllerBase
@@ -29,10 +30,13 @@ namespace WebApp7.Controllers
       {
          try
          {
-            var model = await AuthenticationRepository.GetUserByEmailAsync(User?.Identity?.Name);
-            if (model is not null)
+            if (User.Identity != null && !string.IsNullOrEmpty(User.Identity.Name))
             {
-               return Ok(model);
+               UserDTO? model = await AuthenticationRepository.GetUserByEmailAsync(User.Identity.Name);
+               if (model is not null)
+               {
+                  return Ok(model);
+               }
             }
             return BadRequest();
          }

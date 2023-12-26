@@ -1,5 +1,4 @@
 using WebApp7.Extensions;
-
 namespace WebApp7
 {
    public class Program

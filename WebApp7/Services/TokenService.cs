@@ -1,11 +1,12 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using WebApp7.Models;
+using WebApp7.Models.Token;
 using WebApp7.Models.User;
+using WebApp7.Settings;
 namespace WebApp7.Services
 {
-   public class TokenService
+    public class TokenService
    {
       public SecretSettings SecretSettings { get; }
 

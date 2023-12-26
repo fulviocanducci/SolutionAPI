@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using WebApp7.Models;
 using WebApp7.Services;
+using WebApp7.Settings;
 namespace WebApp7.Extensions
 {
    public static class JwtExtension
@@ -13,12 +13,12 @@ namespace WebApp7.Extensions
          {
             c.SwaggerDoc("v1", new OpenApiInfo
             {
-               Title = "Authorization",
+               Title = "Sistema de Autenticação e Autorização API",
                Version = "v1",
-               Description = "Authorization",
+               Description = "Sistema de Autenticação e Autorização API",
                Contact = new OpenApiContact
                {
-                  Name = "Authorization",
+                  Name = "Sistema de Autenticação e Autorização API",
                   Email = string.Empty,
                   Url = new Uri("https://www.google.com"),
                },
@@ -26,9 +26,9 @@ namespace WebApp7.Extensions
             c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
                BearerFormat = "JWT",
-               Description = "Authorization",
+               Description = "Sistema de Autenticação e Autorização API",
                In = ParameterLocation.Header,
-               Name = "Authorization",
+               Name = "Sistema de Autenticação e Autorização API",
                Type = SecuritySchemeType.ApiKey,
                Scheme = JwtBearerDefaults.AuthenticationScheme
             });
@@ -66,8 +66,8 @@ namespace WebApp7.Extensions
             options.RequireHttpsMetadata = false;
             options.TokenValidationParameters = new TokenValidationParameters()
             {
-               ClockSkew = TokenValidationParameters.DefaultClockSkew,               
-               ValidateAudience = secretSettings.ValidateAudience,  
+               ClockSkew = TokenValidationParameters.DefaultClockSkew,
+               ValidateAudience = secretSettings.ValidateAudience,
                ValidAudience = secretSettings.Audience,
                ValidateIssuer = secretSettings.ValidateIssuer,
                ValidIssuer = secretSettings.Issuer,
@@ -75,7 +75,7 @@ namespace WebApp7.Extensions
                IssuerSigningKey = secretSettings.SymmetricSecurityKey
             };
          });
-         services.AddAuthorization();
+         services.AddAuthorization();         
          return services;
       }
    }

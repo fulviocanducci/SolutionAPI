@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApp7.Databases;
 using WebApp7.Repositories;
-
 namespace WebApp7.Extensions
 {
    public static class ConfigurationExtension
