@@ -33,14 +33,14 @@ namespace WebApp7.Services
          return new TokenDTO(handler.WriteToken(token), tokenDescriptor.Expires);
       }
 
-      private ClaimsIdentity GenerateClaims(UserLogin model)
+      private static ClaimsIdentity GenerateClaims(UserLogin model)
       {
-         var ci = new ClaimsIdentity();
-         ci.AddClaim(new Claim("jti", Guid.NewGuid().ToString()));
-         ci.AddClaim(new Claim(ClaimTypes.Name, model.Email));
-         ci.AddClaim(new Claim(ClaimTypes.Email, model.Email));
-         ci.AddClaim(new Claim(ClaimTypes.NameIdentifier, model.Email));
-         return ci;
+         ClaimsIdentity claimsIdentity = new();
+         claimsIdentity.AddClaim(new Claim("jti", Guid.NewGuid().ToString()));
+         claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, model.Email));
+         claimsIdentity.AddClaim(new Claim(ClaimTypes.Email, model.Email));
+         claimsIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, model.Email));
+         return claimsIdentity;
       }
    }
 }

@@ -17,4 +17,3 @@ namespace WebApp7.Models.User
 
    }
 }
-

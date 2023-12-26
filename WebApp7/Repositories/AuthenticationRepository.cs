@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApp7.Databases;
 using WebApp7.Models.User;
-
 namespace WebApp7.Repositories
 {
    public class AuthenticationRepository(DatabaseContext databaseContext) : IAuthenticationRepository
