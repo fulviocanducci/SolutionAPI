@@ -2,18 +2,11 @@
 
 namespace WebApp7.Models.User
 {
-   public class UserDTO
+   public class UserDTO(Users users)
    {
-      public UserDTO(Users users)
-      {
-         Id = users.Id;
-         Name = users.Name;
-         Email = users.Email;
-      }
-
-      public int Id { get; private set; }
-      public string Name { get; private set; } = string.Empty;
-      public string Email { get; private set; } = string.Empty;
+      public int Id { get; private set; } = users.Id;
+      public string Name { get; private set; } = users.Name;
+      public string Email { get; private set; } = users.Email;
 
    }
 }
